@@ -6,6 +6,8 @@
 	<title>&lt;incode&gt;</title>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="generator" content="Geany 0.18" />
+	<link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+
 <style type="text/css">
 body {
 	background: #151718;
@@ -21,7 +23,20 @@ body {
   height: 1px;
   overflow: visible;
 }
-
+#blib {
+	font-size: 20px;
+display: none;
+font-family: 'Raleway', arial, serif;
+	 position: absolute;
+	 top: 35%;
+  left: 50%;
+  margin-left: -250px;
+  padding: 10px;
+  width: 500px;
+  border-radius: 5px;
+  line-height: 1.4em;
+  text-align: center;
+}
 #inner {
   width: 430px;
   height: 100px;
@@ -44,17 +59,17 @@ h1 { margin: 0; }
 	z-index: 22;
 	position: absolute;
 	margin-left: -210px;
-	
+
 }
 #at {
 	background-position: -236px -85px;
 	width: 12px;
 	height:28px;
-	
+
 	margin-left: 81px;
 	opacity: 1;
 	z-index: 25;
-position: absolute;	
+position: absolute;
 }
 #email {
 	display: none;
@@ -89,7 +104,7 @@ position: absolute;
 	margin-left: 270px;
 }
 
-#emailhold { 
+#emailhold {
 	width: 190px;
 	height: 28px;
 	margin: 0 auto;
@@ -110,43 +125,60 @@ position: absolute;
     <h1><span id="lt">&lt;</span><span id="incode">incode</span><span id="gt">&gt;</span></h1>
   </div>
 </div>
+<div id="blib">
+	<p>&lt;incode&gt;  &mdash; we build high quality web applications. </p>
+	<p>
+		With over 7 years experience in backend and frontend technologies,
+		we bring a vast depth of knowledge to any project.
+	</p>
+	<p>For more information on how we can bring speed, reliability and security to your project email us.</p>
+</div>
 <div id="footer">
 <div id="emailhold">
 <a id="at"></a>
  <a id="email"></a>
 </div></div>
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 <script type="text/javascript">
 $(function () {
-	$('#at').text('@');
+	//$('#at').text('@');
 	$('#incode,#email').fadeTo('0',.001,function () { $(this).show() });
-	$('#inner,#incode,#lt,#gt').hover(function() {incode.over()},function() {incode.out()});
-	
+	//$('#inner,#incode,#lt,#gt').hover(function() {incode.over()},function() {incode.out()});
+
 	$('#email,#at').attr('href','ma'+'ilt'+'o:'+'bruce'+'@'+'incode'+'.co.nz');
-	$('#emailhold')
+/*	$('#emailhold')
 		.hover(function() {
 			$('#email').stop().fadeTo(1000,1);
 		},function () {
-			$('#email').stop().fadeTo(1000,.01);	
+			$('#email').stop().fadeTo(1000,.01);
 		}).find('#email').fadeTo(10,.01);
-	$('#phone').hover(function () {
-		$('#phnum').show();
-	},function () {
-		$('#phnum').hide();
-	});
+*/
+	setTimeout(function () {
+			$('#outer').animate({'top' : '20%'},1000, function () {
+				//$('#blib').fadeIn(function () {
+					$('#blib').fadeIn();
+				//})
+			});
+
+
+      var h =  $(window).height() - ($(window).height() * .35 + $('#blib').height());
+      h = h /4 *3;
+			$('#footer').animate({bottom: h},1000);
+			incode.over();
+
+	},1500);
 });
 var incode = {
 	hover: 0,
 	over: function () {
 		if (this.hover) return;
 		this.hover = 1;
-		$('#gt').stop().animate({marginLeft:  '360'},400);
-		$('#lt').stop().animate({marginLeft: '-360'},400);
+		$('#gt').stop().animate({marginLeft:  '360'},800);
+		$('#lt').stop().animate({marginLeft: '-360'},800);
 		$('#incode').stop().fadeTo('200',1);
-		$('#email').stop().fadeTo(1000,.3);
+		$('#email').stop().fadeTo(1000,1);
 	},
-	out: function () {
+	out: function () { return;
 		if (!this.hover) return;
 		this.hover = 0;
 		$('#gt').stop().animate({marginLeft:  '210'},400);
